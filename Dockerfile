@@ -30,4 +30,6 @@ RUN mkdir logs && \
     chmod -R g=u ftp/ frontend/dist/ logs/ data/ i18n/
 USER juicer
 EXPOSE 3000
+ENV NODE_ENV=fbctf
+HEALTHCHECK --interval=20s --timeout=3s --start-period=20s CMD curl -f http://localhost:3000/ || exit 1
 CMD ["npm", "start"]
